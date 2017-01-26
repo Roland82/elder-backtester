@@ -1,0 +1,1041 @@
+New log file opened at Sat Jan 21 15:49:41 GMT 2017 by 10382@Rolands-MacBook-Pro-2.local
+jvm 10382@Rolands-MacBook-Pro-2.local
+jvm vmName=Java HotSpot(TM) 64-Bit Server VM vmVendor=Oracle Corporation vmVersion=25.60-b23
+jvm specName=Java Virtual Machine Specification specVendor=Oracle Corporation specVersion=1.8
+jvm arguments: [-Xms256m, -Xmx1024m, -XX:MetaspaceSize=64m, -XX:MaxMetaspaceSize=256m]
+Starting event engine
+Starting sbt command engine
+Waiting for sbt command engine
+Command engine arguments=List()
+Command engine baseDirectory=/Users/rolandormrod/Dev/elder/trader-bot
+Command engine initial remaining commands List(--initialize, onFailure load-failed, boot, server-send-ready-for-request, server-handle-next-server-request)
+> --initialize
+> initialize
+> onFailure load-failed
+> boot
+> reload
+[Loading] Scanning directory /Users/rolandormrod/.sbt/0.13/plugins
+[Loading] Found non-root projects 
+[Loading] Done in /Users/rolandormrod/.sbt/0.13/plugins, returning: ()
+deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(List(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))))
+  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.JUnitXmlReportPlugin)
+sorting: ns: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin) not found List(sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin) not found List(sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin) not found List(sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin) not found List()
+  :: sorted deduced result: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+[Loading] Done in /Users/rolandormrod/.sbt/0.13/plugins, returning: (global-plugins)
+Loading global plugins from /Users/rolandormrod/.sbt/0.13/plugins
+Running task... Cancel: sbt.TaskCancellationStrategy$Null$@6dab6cd8, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	
+Other repositories:
+Default repositories:
+Using inline dependencies specified in Scala.
+[Loading] Scanning directory /Users/rolandormrod/Dev/elder/trader-bot/project
+[Loading] Found non-root projects 
+[Loading] Done in /Users/rolandormrod/Dev/elder/trader-bot/project, returning: ()
+deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(List(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))))
+  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.JUnitXmlReportPlugin)
+sorting: ns: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin) not found List(sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin) not found List(sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin) not found List(sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin) not found List()
+  :: sorted deduced result: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
+[Loading] Done in /Users/rolandormrod/Dev/elder/trader-bot/project, returning: (trader-bot-build)
+Loading project definition from /Users/rolandormrod/Dev/elder/trader-bot/project
+Running task... Cancel: sbt.TaskCancellationStrategy$Null$@6dab6cd8, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	
+[Loading] Scanning directory /Users/rolandormrod/Dev/elder/trader-bot
+[Loading] Found non-root projects 
+[Loading] Done in /Users/rolandormrod/Dev/elder/trader-bot, returning: ()
+deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(List(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.BackgroundRunPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.BackgroundRunPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.InteractionServicePlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.SendEventServicePlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.SerializersPlugin)))))
+  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.SerializersPlugin,sbt.plugins.SendEventServicePlugin,sbt.plugins.InteractionServicePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.BackgroundRunPlugin,sbt.plugins.JUnitXmlReportPlugin)
+sorting: ns: List(sbt.plugins.CorePlugin, sbt.plugins.SerializersPlugin, sbt.plugins.SendEventServicePlugin, sbt.plugins.InteractionServicePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.BackgroundRunPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin) not found List(sbt.plugins.SerializersPlugin, sbt.plugins.SendEventServicePlugin, sbt.plugins.InteractionServicePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.BackgroundRunPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.SerializersPlugin, sbt.plugins.SendEventServicePlugin, sbt.plugins.InteractionServicePlugin, sbt.plugins.IvyPlugin) not found List(sbt.plugins.JvmPlugin, sbt.plugins.BackgroundRunPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.SerializersPlugin, sbt.plugins.SendEventServicePlugin, sbt.plugins.InteractionServicePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin) not found List(sbt.plugins.BackgroundRunPlugin, sbt.plugins.JUnitXmlReportPlugin)
+  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.SerializersPlugin, sbt.plugins.SendEventServicePlugin, sbt.plugins.InteractionServicePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.BackgroundRunPlugin, sbt.plugins.JUnitXmlReportPlugin) not found List()
+  :: sorted deduced result: List(sbt.plugins.CorePlugin, sbt.plugins.SerializersPlugin, sbt.plugins.SendEventServicePlugin, sbt.plugins.InteractionServicePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.BackgroundRunPlugin, sbt.plugins.JUnitXmlReportPlugin)
+[Loading] Done in /Users/rolandormrod/Dev/elder/trader-bot, returning: (trader-bot)
+Set current project to minimal-scala (in build file:/Users/rolandormrod/Dev/elder/trader-bot/)
+Reapplying settings...
+Set current project to minimal-scala (in build file:/Users/rolandormrod/Dev/elder/trader-bot/)
+> iflast shell
+> server-send-ready-for-request
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@41bc1ccf, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 27202580, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t =>
+    t =>
+Read from stdout: ^
+      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                                                      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                          ^
+Read from stdout: three errors found
+three errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 3 s, completed 21-Jan-2017 15:49:48
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@c70091b, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler d2f4180, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t =>
+    t =>
+Read from stdout: ^
+      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                                                      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                          ^
+Read from stdout: three errors found
+three errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 1 s, completed 21-Jan-2017 15:49:48
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/Users/rolandormrod/Dev/elder/trader-bot/}trader-bot/compile:discoveredMainClasses
+Evaluating tasks: compile:discoveredMainClasses
+Running task... Cancel: sbt.server.ServerTaskCancellation@73852160, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 1f12d9ee, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t =>
+    t =>
+Read from stdout: ^
+      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                                                      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                          ^
+Read from stdout: three errors found
+three errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 1 s, completed 21-Jan-2017 15:49:49
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/Users/rolandormrod/Dev/elder/trader-bot/}trader-bot/compile:mainClass
+Evaluating tasks: compile:mainClass
+Running task... Cancel: sbt.server.ServerTaskCancellation@192117b1, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 314abc0c, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t =>
+    t =>
+Read from stdout: ^
+      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                                                      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                          ^
+Read from stdout: three errors found
+three errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 1 s, completed 21-Jan-2017 15:49:50
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@5e96c6d8, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 2b56ed07, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t =>
+    t =>
+Read from stdout: ^
+      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                                                      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                          ^
+Read from stdout: three errors found
+three errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 1 s, completed 21-Jan-2017 15:49:56
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@612ecc8a, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 1db26fd0, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t =>
+    t =>
+Read from stdout: ^
+      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                                                      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                          ^
+Read from stdout: three errors found
+three errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:51:35
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@35fd22d6, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 12d10156, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:16: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t =>
+    t =>
+Read from stdout: ^
+      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                                                      ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:21: not found: type Holding
+Read from stdout: def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+  def addHolding(holding: Holding) = State[Portfolio, Holding] { p =>
+Read from stdout: ^
+                          ^
+Read from stdout: three errors found
+three errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:51:38
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@2f7fda19, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 7bacb8bc, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:18: Portfolio is already defined as case class Portfolio
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:18: Portfolio is already defined as case class Portfolio
+Read from stdout: case class Portfolio(holdings: Vector[Holding])
+case class Portfolio(holdings: Vector[Holding])
+Read from stdout: ^
+           ^
+Read from stdout: one error found
+one error found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:55:08
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@42972630, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 5f62c553, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:18: Portfolio is already defined as case class Portfolio
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:18: Portfolio is already defined as case class Portfolio
+Read from stdout: case class Portfolio(holdings: Vector[Holding])
+case class Portfolio(holdings: Vector[Holding])
+Read from stdout: ^
+           ^
+Read from stdout: one error found
+one error found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:55:23
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@98fb631, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 544e6516, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: identifier expected but '}' found.
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: identifier expected but '}' found.
+Read from stdout: }
+    }
+Read from stdout: ^
+    ^
+Read from stdout: one error found
+one error found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:56:20
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@469e063b, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 401a8e6c, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: identifier expected but '}' found.
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: identifier expected but '}' found.
+Read from stdout: }
+    }
+Read from stdout: ^
+    ^
+Read from stdout: one error found
+one error found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:56:24
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@583c1374, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 12c77d77, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:22: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:22: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t => {
+    t => {
+Read from stdout: ^
+         ^
+Read from stdout: one error found
+one error found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:56:35
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@7c5a305c, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 10af4099, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: case SoldShort(t, p, n) => {
+        case SoldShort(t, p, n) => {
+Read from stdout: ^
+                                   ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:28: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:28: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: case Sold(t, p) => {
+        case Sold(t, p) => {
+Read from stdout: ^
+                           ^
+Read from stdout: two errors found
+two errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:59:20
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@2fbfc2b5, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 6e64d352, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: case SoldShort(t, p, n) => {
+        case SoldShort(t, p, n) => {
+Read from stdout: ^
+                                   ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:29: type mismatch;
+Read from stdout: found   : uk.co.elder.app.Ticker
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:29: type mismatch;
+ found   : uk.co.elder.app.Ticker
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: t
+          t
+Read from stdout: ^
+          ^
+Read from stdout: two errors found
+two errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 15:59:32
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@4c2ad791, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 614a6931, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:24: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: case SoldShort(t, p, n) => {
+        case SoldShort(t, p, n) => {
+Read from stdout: ^
+                                   ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:30: type mismatch;
+Read from stdout: found   : Unit
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:30: type mismatch;
+ found   : Unit
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: case Some(h) =>
+            case Some(h) =>
+Read from stdout: ^
+                         ^
+Read from stdout: two errors found
+two errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 16:00:52
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@133cd7ab, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala)
+
+Read from stdout: Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Compiling 1 Scala source to /Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes...
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Getting compiler-interface from component compiler for Scala 2.11.8
+Other repositories:
+Default repositories:
+Running cached compiler 64a87c69, interfacing (CompilerInterface) with Scala compiler version 2.11.8
+Calling Scala compiler with arguments  (CompilerInterface):
+	-bootclasspath
+	/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/classes:/Users/rolandormrod/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar
+	-classpath
+	/Users/rolandormrod/Dev/elder/trader-bot/target/scala-2.11/classes:/Users/rolandormrod/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.3.0-M8.jar:/Users/rolandormrod/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.11/bundles/scala-java8-compat_2.11-0.7.0.jar:/Users/rolandormrod/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:26: type mismatch;
+Read from stdout: found   : scala.collection.immutable.Vector[uk.co.elder.app.Holding]
+Read from stdout: required: uk.co.elder.app.Portfolio
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:26: type mismatch;
+ found   : scala.collection.immutable.Vector[uk.co.elder.app.Holding]
+ required: uk.co.elder.app.Portfolio
+Read from stdout: case Some(h) => trader.copy(trader.portfolio.holdings.filter(c => !(c.direction == Long && c.ticker == ticker)), trader.cash)
+            case Some(h) => trader.copy(trader.portfolio.holdings.filter(c => !(c.direction == Long && c.ticker == ticker)), trader.cash)
+Read from stdout: ^
+                                                                        ^
+Read from stdout: /Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:27: type mismatch;
+Read from stdout: found   : uk.co.elder.app.Ticker
+Read from stdout: required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+/Users/rolandormrod/Dev/elder/trader-bot/src/main/scala/uk/co/elder/app/Portfolio.scala:27: type mismatch;
+ found   : uk.co.elder.app.Ticker
+ required: (uk.co.elder.app.Trader, scalaz.Validation[uk.co.elder.app.TradingError,uk.co.elder.app.Portfolio])
+Read from stdout: case _ => ticker
+            case _ => ticker
+Read from stdout: ^
+                      ^
+Read from stdout: two errors found
+two errors found
+Compilation failed (CompilerInterface)
+Read from stdout: (compile:compileIncremental) Compilation failed
+(compile:compileIncremental) Compilation failed
+Total time: 0 s, completed 21-Jan-2017 16:14:11
+> server-post-command-error-handler
+> server-post-command-cleanup
+> server-handle-next-server-request
