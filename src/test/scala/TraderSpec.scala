@@ -1,9 +1,12 @@
+import org.joda.time.DateTime
 import org.scalatest._
 import uk.co.elder.app.model._
-import uk.co.elder.app.{Long, Short, Sold, Ticker, TradingEvents, WentLong}
+import uk.co.elder.app.{DividendPaid, Long, Short, Sold, Ticker, TradingEvents, WentLong}
 
 class TraderSpec extends FunSpec with Matchers {
-  def poundsAsPence(pounds: Int) = pounds * 100
+  private def poundsAsPence(pounds: Int) = pounds * 100
+
+  private val date = DateTime.now()
 
   describe("Trader who has 100 shares both Long and Short in his holdings in SGP.L") {
     val holdings = Vector(
@@ -11,8 +14,8 @@ class TraderSpec extends FunSpec with Matchers {
       Holding(Ticker("SGP.L"), Short, 100)
     )
 
-    val trader = Trader(Portfolio(holdings, 100), List(WentLong(Ticker("SGP.L"), Bid(10), 100)))
-    val event = Sold(Ticker("SGP.L"), Ask(200))
+    val trader = Trader(Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), 100)))
+    val event = Sold(date, Ticker("SGP.L"), Ask(200))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
 
@@ -34,10 +37,10 @@ class TraderSpec extends FunSpec with Matchers {
   }
 
   describe("Trader who goes long on SGP.L buying 100 shares at 16 pounds with £10,000 cash in his portfolio") {
-    val event = WentLong(Ticker("SGP.L"), Bid(poundsAsPence(16)), numberOfShares = 100)
+    val event = WentLong(date, Ticker("SGP.L"), Bid(poundsAsPence(16)), numberOfShares = 100)
 
     describe("and doesn't have any holdings yet,") {
-      val trader = Trader(Portfolio(Vector.empty, cash = poundsAsPence(10000)), List(WentLong(Ticker("SGP.L"), Bid(10), 100)))
+      val trader = Trader(Portfolio(Vector.empty, cash = poundsAsPence(10000)), List(WentLong(date, Ticker("SGP.L"), Bid(10), 100)))
       val state = TradingEvents.handleEvent(event)
       val (_, t) = state.run(trader)
 
@@ -63,7 +66,7 @@ class TraderSpec extends FunSpec with Matchers {
         Holding(Ticker("SGP.L"), Long, 300),
         Holding(Ticker("SGP.L"), Short, 100),
         Holding(Ticker("CTAG.L"), Long, 100)
-      ), cash = poundsAsPence(10000)), List(WentLong(Ticker("SGP.L"), Bid(10), 100)))
+      ), cash = poundsAsPence(10000)), List(WentLong(date, Ticker("SGP.L"), Bid(10), 100)))
 
       val state = TradingEvents.handleEvent(event)
       val (_, t) = state.run(trader)
@@ -95,10 +98,10 @@ class TraderSpec extends FunSpec with Matchers {
     val trader = Trader(Portfolio(Vector(), cash = poundsAsPence(1000)), List.empty)
 
     val tradingEvents = List(
-      WentLong(Ticker("CTAG.L"), Bid(10), 100),
-      WentLong(Ticker("SGP.L"), Bid(20), 200),
-      Sold(Ticker("SGP.L"), Ask(30)),
-      Sold(Ticker("CTAG.L"), Ask(5))
+      WentLong(date, Ticker("CTAG.L"), Bid(10), 100),
+      WentLong(date, Ticker("SGP.L"), Bid(20), 200),
+      Sold(date, Ticker("SGP.L"), Ask(30)),
+      Sold(date, Ticker("CTAG.L"), Ask(5))
     )
 
     val states = TradingEvents.runEvents(trader, tradingEvents)
@@ -111,7 +114,7 @@ class TraderSpec extends FunSpec with Matchers {
       states(1).portfolio.holdings shouldEqual Vector(Holding(Ticker("CTAG.L"), Long, 100))
       states(1).portfolio.cash shouldEqual poundsAsPence(990)
 
-      states(2).portfolio.holdings should contain allOf (Holding(Ticker("CTAG.L"), Long, 100), Holding(Ticker("SGP.L"), Long, 200))
+      states(2).portfolio.holdings should contain allOf(Holding(Ticker("CTAG.L"), Long, 100), Holding(Ticker("SGP.L"), Long, 200))
       states(2).portfolio.cash shouldEqual poundsAsPence(950)
 
       states(3).portfolio.holdings shouldEqual Vector(Holding(Ticker("CTAG.L"), Long, 100))
@@ -130,6 +133,31 @@ class TraderSpec extends FunSpec with Matchers {
       for (i <- 1 until 4) {
         states(i).eventHistory.size shouldEqual i
       }
+    }
+  }
+
+  describe("Trader who has a dividend paid of £10.51") {
+    val holdings = Vector(
+      Holding(Ticker("SGP.L"), Long, 100),
+      Holding(Ticker("SGP.L"), Short, 100)
+    )
+
+    val trader = Trader(Portfolio(holdings, 5000), List(WentLong(date, Ticker("SGP.L"), Bid(10), 100)))
+    val event = DividendPaid(date, Ticker("SGP.L"), 1051)
+    val state = TradingEvents.handleEvent(event)
+    val (_, t) = state.run(trader)
+
+    it("should have have the dividend cash added to his current cash position") {
+      t.portfolio.cash shouldEqual 6051
+    }
+
+    it("should have the dividend paid event stored in his history") {
+      t.eventHistory.size shouldEqual 2
+      t.eventHistory(1) shouldEqual event
+    }
+
+    it("should not have their amount of holdings amended") {
+      t.portfolio.holdings.size shouldEqual 2
     }
   }
 }

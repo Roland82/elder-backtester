@@ -1,17 +1,20 @@
 package uk.co.elder.app
 
+import org.joda.time.DateTime
 import uk.co.elder.app.model.Trader._
 import uk.co.elder.app.model.{Ask, Bid, Holding, Trader}
+
 import scalaz.State
 
 case class TradingError(errorMessage: String)
 case class Ticker(value: String) extends AnyVal
 sealed trait Event
 
-case class SoldShort(ticker: Ticker, atPrice: Ask, numberOfShares: BigInt) extends Event
-case class WentLong(ticker: Ticker, atPrice: Bid, numberOfShares: BigInt) extends Event
-case class Covered(ticker: Ticker, atPrice: Bid) extends Event
-case class Sold(ticker: Ticker, atPrice: Ask) extends Event
+case class SoldShort(date: DateTime, ticker: Ticker, atPrice: Ask, numberOfShares: BigInt) extends Event
+case class WentLong(date: DateTime,ticker: Ticker, atPrice: Bid, numberOfShares: BigInt) extends Event
+case class Covered(date: DateTime,ticker: Ticker, atPrice: Bid) extends Event
+case class Sold(date: DateTime,ticker: Ticker, atPrice: Ask) extends Event
+case class DividendPaid(date: DateTime, ticker: Ticker, amountPaid: BigDecimal) extends Event
 
 sealed trait Direction
 case object Short extends Direction
@@ -33,7 +36,7 @@ object TradingEvents {
     currentTrader => {
       tradingEvent match {
 
-        case Sold(ticker, soldPrice) =>
+        case Sold(_, ticker, soldPrice) =>
           searchHoldings(currentTrader, ticker, Long) match {
             case Some(holding) => {
               val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long)
@@ -48,7 +51,7 @@ object TradingEvents {
             case _ => (currentTrader, currentTrader)
           }
 
-        case WentLong(ticker, bid, numShares) => {
+        case WentLong(_, ticker, bid, numShares) => {
           val newHolding = searchHoldings(currentTrader, ticker, Long)
             .flatMap(h => Some(h.copy(numberOfShares = h.numberOfShares + numShares)))
             .getOrElse(Holding(ticker, Long, numShares))
@@ -61,6 +64,15 @@ object TradingEvents {
             } yield (p, t)
 
           (currentTrader, stateChange.run(currentTrader)._1)
+        }
+
+        case DividendPaid(_, _, amountPaid) => {
+          val stateAction = for {
+            c <- amendCash(amountPaid)
+            t <- addTradingEvent(tradingEvent)
+          } yield (c, t)
+
+          (currentTrader, stateAction.run(currentTrader)._1)
         }
       }
     }
