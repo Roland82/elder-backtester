@@ -1,6 +1,6 @@
 import org.scalatest._
 import uk.co.elder.app.model._
-import uk.co.elder.app.{Long, Short, Sold, SoldShort, Ticker, TradingEvents, WentLong}
+import uk.co.elder.app.{Long, Short, Sold, Ticker, TradingEvents, WentLong}
 
 class TraderSpec extends FunSpec with Matchers {
   def poundsAsPence(pounds: Int) = pounds * 100
@@ -11,7 +11,7 @@ class TraderSpec extends FunSpec with Matchers {
       Holding(Ticker("SGP.L"), Short, 100)
     )
 
-    val trader = Trader(Portfolio(holdings, 100))
+    val trader = Trader(Portfolio(holdings, 100), List(WentLong(Ticker("SGP.L"), Bid(10), 100)))
     val event = Sold(Ticker("SGP.L"), Ask(200))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
@@ -27,13 +27,17 @@ class TraderSpec extends FunSpec with Matchers {
     it("should add the price achieved by the sale to the traders cash holdings") {
       t.portfolio.cash shouldEqual 20100
     }
+
+    it("should append to the trading event history") {
+      t.eventHistory.size shouldEqual 2
+    }
   }
 
   describe("Trader who goes long on SGP.L buying 100 shares at 16 pounds with £10,000 cash in his portfolio") {
     val event = WentLong(Ticker("SGP.L"), Bid(poundsAsPence(16)), numberOfShares = 100)
 
     describe("and doesn't have any holdings yet,") {
-      val trader = Trader(Portfolio(Vector.empty, cash = poundsAsPence(10000)))
+      val trader = Trader(Portfolio(Vector.empty, cash = poundsAsPence(10000)), List(WentLong(Ticker("SGP.L"), Bid(10), 100)))
       val state = TradingEvents.handleEvent(event)
       val (_, t) = state.run(trader)
 
@@ -48,6 +52,10 @@ class TraderSpec extends FunSpec with Matchers {
       it("should have £9200 in his cash holdings after the transaction") {
         t.portfolio.cash shouldEqual poundsAsPence(8400)
       }
+
+      it("should append to the trading event history") {
+        t.eventHistory.size shouldEqual 2
+      }
     }
 
     describe("and has a pre-existing SGP Holding of 300 shares along with a short SGP holding and another long holding,") {
@@ -55,7 +63,7 @@ class TraderSpec extends FunSpec with Matchers {
         Holding(Ticker("SGP.L"), Long, 300),
         Holding(Ticker("SGP.L"), Short, 100),
         Holding(Ticker("CTAG.L"), Long, 100)
-      ), cash = poundsAsPence(10000)))
+      ), cash = poundsAsPence(10000)), List(WentLong(Ticker("SGP.L"), Bid(10), 100)))
 
       val state = TradingEvents.handleEvent(event)
       val (_, t) = state.run(trader)
@@ -76,11 +84,15 @@ class TraderSpec extends FunSpec with Matchers {
       it("should have £9200 in his cash holdings after the transaction") {
         t.portfolio.cash shouldEqual poundsAsPence(8400)
       }
+
+      it("should append to the trading event history") {
+        t.eventHistory.size shouldEqual 2
+      }
     }
   }
 
   describe("When a trader makes 4 trades in succession") {
-    val trader = Trader(Portfolio(Vector(), cash = poundsAsPence(1000)))
+    val trader = Trader(Portfolio(Vector(), cash = poundsAsPence(1000)), List.empty)
 
     val tradingEvents = List(
       WentLong(Ticker("CTAG.L"), Bid(10), 100),
@@ -112,6 +124,12 @@ class TraderSpec extends FunSpec with Matchers {
     it("returns the start state of the trader at the start of the list of states") {
       states.head.portfolio.holdings shouldEqual Vector()
       states.head.portfolio.cash shouldEqual poundsAsPence(1000)
+    }
+
+    it("Trading history should increase by 1 event after every state change") {
+      for (i <- 1 until 4) {
+        states(i).eventHistory.size shouldEqual i
+      }
     }
   }
 }

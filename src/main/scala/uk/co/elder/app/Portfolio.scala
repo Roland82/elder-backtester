@@ -36,9 +36,14 @@ object TradingEvents {
         case Sold(ticker, soldPrice) =>
           searchHoldings(currentTrader, ticker, Long) match {
             case Some(holding) => {
-              val newCashPosition = currentTrader.portfolio.cash + holding.currentValue(soldPrice)
-              val newPortfolio = currentTrader.portfolio.copy(holdings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long), cash = newCashPosition)
-              (currentTrader, currentTrader.copy(portfolio = newPortfolio))
+              val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long)
+
+              val stateChange = for {
+                p <- amendPortfolioDetails(newHoldings, holding.currentValue(soldPrice))
+                t <- addTradingEvent(tradingEvent)
+              } yield (p, t)
+
+              (currentTrader, stateChange.run(currentTrader)._1)
             }
             case _ => (currentTrader, currentTrader)
           }
@@ -49,8 +54,13 @@ object TradingEvents {
             .getOrElse(Holding(ticker, Long, numShares))
 
           val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long) :+ newHolding
-          val newTrader = changeCashAndHoldings.mod(t => (t._1 - (BigDecimal(numShares) * bid.value),  newHoldings), currentTrader)
-          (currentTrader, newTrader)
+
+          val stateChange = for {
+              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(numShares) * bid.value))
+              t <- addTradingEvent(tradingEvent)
+            } yield (p, t)
+
+          (currentTrader, stateChange.run(currentTrader)._1)
         }
       }
     }
