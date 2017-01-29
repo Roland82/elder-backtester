@@ -1,11 +1,13 @@
 package uk.co.elder.app.model
 
-import uk.co.elder.app.{Direction, Event, Ticker}
+import uk.co.elder.app.{Direction, Event}
 
 import scalaz.IndexedState
 import scalaz.Lens.lensu
 
-case class Trader(portfolio: Portfolio, eventHistory: List[Event])
+case class Trader(portfolio: Portfolio, eventHistory: List[Event]) {
+  def tickerSummary(d: Direction) = this.portfolio.holdings.filter(_.direction == d).map(_.ticker)
+}
 case class Holding(ticker: Ticker, direction: Direction, numberOfShares: BigInt) {
   def currentValue(pricePerShare: Ask) = BigDecimal(numberOfShares) * pricePerShare.value
 }

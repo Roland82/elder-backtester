@@ -2,16 +2,18 @@ package uk.co.elder.app
 
 import org.joda.time.DateTime
 import uk.co.elder.app.model.Trader._
-import uk.co.elder.app.model.{Ask, Bid, Holding, Trader}
+import uk.co.elder.app.model._
 
 import scalaz.State
 
+// TODO: Move these elsewhere
 case class TradingError(errorMessage: String)
-case class Ticker(value: String) extends AnyVal
-sealed trait Event
 
+
+
+sealed trait Event
 case class SoldShort(date: DateTime, ticker: Ticker, atPrice: Ask, numberOfShares: BigInt) extends Event
-case class WentLong(date: DateTime,ticker: Ticker, atPrice: Bid, numberOfShares: BigInt) extends Event
+case class WentLong(date: DateTime, ticker: Ticker, atPrice: Bid, volume: Volume) extends Event
 case class Covered(date: DateTime,ticker: Ticker, atPrice: Bid) extends Event
 case class Sold(date: DateTime,ticker: Ticker, atPrice: Ask) extends Event
 case class DividendPaid(date: DateTime, ticker: Ticker, amountPaid: BigDecimal) extends Event
@@ -35,7 +37,7 @@ object TradingEvents {
   def handleEvent(tradingEvent: Event): State[Trader, Trader] = State[Trader, Trader] {
     currentTrader => {
       tradingEvent match {
-
+        // TODO: Add volume to this
         case Sold(_, ticker, soldPrice) =>
           searchHoldings(currentTrader, ticker, Long) match {
             case Some(holding) => {
@@ -51,15 +53,15 @@ object TradingEvents {
             case _ => (currentTrader, currentTrader)
           }
 
-        case WentLong(_, ticker, bid, numShares) => {
+        case WentLong(_, ticker, bid, volume) => {
           val newHolding = searchHoldings(currentTrader, ticker, Long)
-            .flatMap(h => Some(h.copy(numberOfShares = h.numberOfShares + numShares)))
-            .getOrElse(Holding(ticker, Long, numShares))
+            .flatMap(h => Some(h.copy(numberOfShares = h.numberOfShares + volume.value)))
+            .getOrElse(Holding(ticker, Long, volume.value))
 
           val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long) :+ newHolding
 
           val stateChange = for {
-              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(numShares) * bid.value))
+              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(volume.value) * bid.value))
               t <- addTradingEvent(tradingEvent)
             } yield (p, t)
 

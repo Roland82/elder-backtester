@@ -5,5 +5,5 @@ import scalaz.Reader
 case class Portfolio(holdings: Vector[Holding], cash: BigDecimal)
 
 object Portfolio {
- // def calculateValue() : Reader[]
+
 }
