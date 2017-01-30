@@ -60,15 +60,22 @@ class TradingCommandHandlerSpec extends FunSpec with Matchers {
     it("should return a Sold event if all validation is successful") {
       val command = SellHolding(now, ticker = longHolding.ticker, atPrice = Ask(10), volume = Volume(longHolding.numberOfShares))
       val result = handleCommand(trader, command)
-      result.isSuccess shouldEqual true
-      result.disjunction match {
-        case -\/(e) => fail(s"Errors occured: $e")
-        case \/-(r) => r shouldEqual Sold(now, command.ticker, command.atPrice)
-      }
+      result.fold(
+        e => fail(s"Errors occured: $e"),
+        r => r shouldEqual Sold(now, command.ticker, command.atPrice, command.volume)
+      )
     }
 
     it("cannot sell more shares in a holding than they actually own") {
-      pending
+      val command = SellHolding(now, ticker = longHolding.ticker, atPrice = Ask(10), volume = Volume(longHolding.numberOfShares + 1))
+      val result = handleCommand(trader, command)
+      result.fold(
+          e => {
+            e.size shouldBe 1
+            e.head shouldBe "The trader doesn't own 101 shares in SGP.L. Cannot sell this number of shares."
+          },
+          _ => fail
+      )
     }
   }
 

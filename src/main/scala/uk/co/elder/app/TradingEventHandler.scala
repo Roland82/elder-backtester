@@ -9,13 +9,11 @@ import scalaz.State
 // TODO: Move these elsewhere
 case class TradingError(errorMessage: String)
 
-
-
 sealed trait Event
 case class SoldShort(date: DateTime, ticker: Ticker, atPrice: Ask, numberOfShares: BigInt) extends Event
 case class WentLong(date: DateTime, ticker: Ticker, atPrice: Bid, volume: Volume) extends Event
 case class Covered(date: DateTime,ticker: Ticker, atPrice: Bid) extends Event
-case class Sold(date: DateTime,ticker: Ticker, atPrice: Ask) extends Event
+case class Sold(date: DateTime,ticker: Ticker, atPrice: Ask, volume: Volume) extends Event
 case class DividendPaid(date: DateTime, ticker: Ticker, amountPaid: BigDecimal) extends Event
 
 sealed trait Direction
@@ -37,24 +35,17 @@ object TradingEvents {
   def handleEvent(tradingEvent: Event): State[Trader, Trader] = State[Trader, Trader] {
     currentTrader => {
       tradingEvent match {
-        // TODO: Add volume to this
-        case Sold(_, ticker, soldPrice) =>
-          searchHoldings(currentTrader, ticker, Long) match {
-            case Some(holding) => {
-              val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long)
+        case Sold(_, ticker, soldPrice, volume) =>
+          val stateChange = for {
+            a <- reduceLongPosition(ticker, volume)
+            _ <- amendCash(BigDecimal(volume.value) * soldPrice.value)
+            t <- addTradingEvent(tradingEvent)
+          } yield t
 
-              val stateChange = for {
-                p <- amendPortfolioDetails(newHoldings, holding.currentValue(soldPrice))
-                t <- addTradingEvent(tradingEvent)
-              } yield (p, t)
+          (currentTrader, stateChange.run(currentTrader)._1)
 
-              (currentTrader, stateChange.run(currentTrader)._1)
-            }
-            case _ => (currentTrader, currentTrader)
-          }
-
-        case WentLong(_, ticker, bid, volume) => {
-          val newHolding = searchHoldings(currentTrader, ticker, Long)
+        case WentLong(_, ticker, bid, volume) =>
+          val newHolding = currentTrader.findPosition(ticker, Long)
             .flatMap(h => Some(h.copy(numberOfShares = h.numberOfShares + volume.value)))
             .getOrElse(Holding(ticker, Long, volume.value))
 
@@ -66,7 +57,6 @@ object TradingEvents {
             } yield (p, t)
 
           (currentTrader, stateChange.run(currentTrader)._1)
-        }
 
         case DividendPaid(_, _, amountPaid) => {
           val stateAction = for {
@@ -79,10 +69,6 @@ object TradingEvents {
       }
     }
   }
-
-  private def searchHoldings(trader: Trader, ticker: Ticker, direction: Direction): Option[Holding] =
-    trader.portfolio.holdings.find(h => h.ticker == ticker && h.direction == direction)
-
 
   private def removeFromHoldings(holdings: Vector[Holding], ticker: Ticker, direction: Direction): Vector[Holding] =
     holdings.filter(h => !(h.ticker == ticker && h.direction == direction))

@@ -8,23 +8,22 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
   private val date = DateTime.now()
 
-  describe("Trader who has 100 shares both Long and Short in his holdings in SGP.L") {
+  describe("Trader who has 100 shares both Long and Short in SGP.L and has some long CTAG.L shares and sells all his long SGP.L holdings") {
     val holdings = Vector(
       Holding(Ticker("SGP.L"), Long, 100),
-      Holding(Ticker("SGP.L"), Short, 100)
+      Holding(Ticker("SGP.L"), Short, 100),
+      Holding(Ticker("CTAG.L"), Long, 100)
     )
 
     val trader = Trader(Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
-    val event = Sold(date, Ticker("SGP.L"), Ask(200))
+    val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(100))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
 
-    it("should sell all 100 long positions in SGP.L") {
-      t.portfolio.holdings.size shouldEqual 1
-    }
-
-    it("should leave 100 shares Short in his holdings in SGP.L") {
+    it("should leave only 100 shares Short in SGP.L, and the long CTAG.L shares") {
+      t.portfolio.holdings.size shouldEqual 2
       t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Short, 100)
+      t.portfolio.holdings(1) shouldEqual Holding(Ticker("CTAG.L"), Long, 100)
     }
 
     it("should add the price achieved by the sale to the traders cash holdings") {
@@ -33,6 +32,80 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
     it("should append to the trading event history") {
       t.eventHistory.size shouldEqual 2
+    }
+  }
+
+  describe("Trader who has 100 shares of SGP.L and recieves a Sold event for 200 shares") {
+    val holdings = Vector(
+      Holding(Ticker("SGP.L"), Long, 100)
+    )
+
+    val trader = Trader(Portfolio(holdings, 100), List())
+    val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(200))
+    val state = TradingEvents.handleEvent(event)
+    val (_, t) = state.run(trader)
+
+    it("should entirely remove the holding from their portfolio") {
+      t.portfolio.holdings.size shouldEqual 0
+    }
+
+    it("should only add cash back for selling 100 shares and not the amount requested") {
+      t.portfolio.cash shouldEqual 20100
+    }
+
+    it("should append to the trading event history") {
+      t.eventHistory.size shouldEqual 1
+    }
+  }
+
+  describe("Trader who has no holdings at all receives event to sell ") {
+    val holdings = Vector(
+      Holding(Ticker("SGP.L"), Long, 100)
+    )
+
+    val trader = Trader(Portfolio(holdings, 100), List())
+    val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(200))
+    val state = TradingEvents.handleEvent(event)
+    val (_, t) = state.run(trader)
+
+    it("should not have any effect on the trader") {
+      t shouldEqual trader
+    }
+  }
+
+  describe("Trader who has 100 shares both Long and Short in his holdings in SGP.L and sells half of his long holdings") {
+    val holdings = Vector(
+      Holding(Ticker("SGP.L"), Long, 100),
+      Holding(Ticker("SGP.L"), Short, 100)
+    )
+
+    val trader = Trader(Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
+    val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(50))
+    val state = TradingEvents.handleEvent(event)
+    val (_, t) = state.run(trader)
+
+    it("should still have 2 holdings in his portfolio") {
+      t.portfolio.holdings.size shouldBe 2
+    }
+
+    it("should append to the trading event history") {
+      t.eventHistory.size shouldEqual 2
+    }
+
+    it("should leave 100 shares Short in his holdings in SGP.L") {
+      t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Short, 100)
+    }
+
+    it("should add the price achieved by the sale to the traders cash holdings") {
+      t.portfolio.cash shouldEqual 10100
+    }
+
+    it("should leave 50 shares long in his holdings for SGP.L") {
+      val numShares = t.portfolio.holdings.find(e => e.ticker.value == "SGP.L" && e.direction == Long).map(_.numberOfShares)
+      numShares match {
+        case Some(e) => e shouldEqual 50
+        case None => fail("Trader no longer has a long position in SGP.L")
+      }
     }
   }
 
@@ -100,8 +173,8 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     val tradingEvents = List(
       WentLong(date, Ticker("CTAG.L"), Bid(10), Volume(100)),
       WentLong(date, Ticker("SGP.L"), Bid(20), Volume(200)),
-      Sold(date, Ticker("SGP.L"), Ask(30)),
-      Sold(date, Ticker("CTAG.L"), Ask(5))
+      Sold(date, Ticker("SGP.L"), Ask(30), Volume(200)),
+      Sold(date, Ticker("CTAG.L"), Ask(5), Volume(100))
     )
 
     val states = TradingEvents.runEvents(trader, tradingEvents)
