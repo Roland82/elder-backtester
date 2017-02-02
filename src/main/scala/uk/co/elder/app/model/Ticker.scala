@@ -1,12 +1,14 @@
 package uk.co.elder.app.model
 
-import scalaz.ValidationNel
+import scalaz.{@@, Tag, ValidationNel}
 import scalaz.syntax.validation._
 
-case class Ticker(value: String) extends AnyVal
+sealed trait Ticker
 
 object Ticker {
-  def validateTicker(t: Ticker): ValidationNel[String, Ticker] = {
-    if (t.value.isEmpty) "The ticker value is empty".failureNel else t.successNel
+  def apply(t: String): String @@ Ticker = Tag[String, Ticker](t)
+
+  def validateTicker(t: String @@ Ticker): ValidationNel[String, String @@ Ticker] = {
+    if (Tag.unwrap(t).isEmpty) "The ticker value is empty".failureNel else t.successNel
   }
 }

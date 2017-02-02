@@ -2,17 +2,18 @@ package uk.co.elder.app
 
 import org.joda.time.DateTime
 import uk.co.elder.app.model.Bid._
+import uk.co.elder.app.model.Ask._
 import uk.co.elder.app.model.Ticker._
 import uk.co.elder.app.model.Volume._
 import uk.co.elder.app.model._
 
 import scalaz.syntax.applicative._
 import scalaz.syntax.nel._
-import scalaz.{Validation, ValidationNel}
+import scalaz.{@@, Validation, ValidationNel}
 
 sealed trait Command
-case class GoLongCommand(date: DateTime, ticker: Ticker, atPrice: Bid, volume: Volume) extends Command
-case class SellHolding(date: DateTime, ticker: Ticker, atPrice: Ask, volume: Volume) extends Command
+case class GoLongCommand(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid, volume: Volume) extends Command
+case class SellHolding(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@ Ask, volume: Volume) extends Command
 
 object TradingCommandHandler {
 
@@ -41,15 +42,15 @@ object TradingCommandHandler {
 
         validation(Sold)
           .ensure("The trader doesn't own shares in this ticker".wrapNel)(_ => ownsSharesInTicker)
-          .ensure(s"The trader doesn't own ${cmd.volume.value} shares in ${cmd.ticker.value}. Cannot sell this number of shares.".wrapNel)(_ => hasEnoughSharesToSell)
+          .ensure(s"The trader doesn't own ${cmd.volume.value} shares in ${cmd.ticker}. Cannot sell this number of shares.".wrapNel)(_ => hasEnoughSharesToSell)
 
       }
     }
   }
 
   // TODO: Get rid of this
-  def traderCashValidation(b: Bid, v: Volume, t: Trader): Boolean = {
-    val tradeCost = BigDecimal(v.value) * b.value
+  def traderCashValidation(b: BigDecimal @@ Bid, v: Volume, t: Trader): Boolean = {
+    val tradeCost = BigDecimal(v.value) * b
     tradeCost < t.portfolio.cash
   }
 }

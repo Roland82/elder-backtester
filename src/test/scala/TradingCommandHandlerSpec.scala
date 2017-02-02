@@ -1,3 +1,5 @@
+import java.util.UUID
+
 import org.joda.time.DateTime
 import org.scalatest.{FunSpec, Matchers}
 import uk.co.elder.app.{GoLongCommand, Long, SellHolding, Short, Sold, WentLong}
@@ -8,11 +10,12 @@ import scalaz.{-\/, IList, \/-}
 
 class TradingCommandHandlerSpec extends FunSpec with Matchers {
   val now = DateTime.now()
+  private val traderId = TraderId(UUID.randomUUID())
 
   describe("TradingCommandHandler receiving a sell holding command") {
     val shortHolding = Holding(Ticker("CTAG.L"), Short, 100)
     val longHolding = Holding(Ticker("SGP.L"), Long, 100)
-    val trader = Trader(Portfolio(Vector(shortHolding, longHolding), 1000), List.empty)
+    val trader = Trader(traderId, Portfolio(Vector(shortHolding, longHolding), 1000), List.empty)
 
     it("should validate all parameters") {
       val command = SellHolding(DateTime.now(), ticker = Ticker(""), atPrice = Ask(0), volume = Volume(0))
@@ -80,7 +83,7 @@ class TradingCommandHandlerSpec extends FunSpec with Matchers {
   }
 
   describe("TradingCommandHandler receiving a go long command") {
-    val trader = Trader(Portfolio(Vector(), 1000), List.empty)
+    val trader = Trader(traderId, Portfolio(Vector(), 1000), List.empty)
 
     it("should validate all parameters coming in") {
       val command = GoLongCommand(DateTime.now(), ticker = Ticker(""), atPrice = Bid(0), volume = Volume(0))

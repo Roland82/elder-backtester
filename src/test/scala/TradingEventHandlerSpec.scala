@@ -1,3 +1,5 @@
+import java.util.UUID
+
 import org.joda.time.DateTime
 import org.scalatest._
 import uk.co.elder.app.model._
@@ -5,8 +7,8 @@ import uk.co.elder.app.{DividendPaid, Long, Short, Sold, TradingEvents, WentLong
 
 class TradingEventHandlerSpec extends FunSpec with Matchers {
   private def poundsAsPence(pounds: Int) = pounds * 100
-
   private val date = DateTime.now()
+  private val traderId = TraderId(UUID.randomUUID())
 
   describe("Trader who has 100 shares both Long and Short in SGP.L and has some long CTAG.L shares and sells all his long SGP.L holdings") {
     val holdings = Vector(
@@ -15,7 +17,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
       Holding(Ticker("CTAG.L"), Long, 100)
     )
 
-    val trader = Trader(Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
+    val trader = Trader(traderId, Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
     val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(100))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
@@ -40,7 +42,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
       Holding(Ticker("SGP.L"), Long, 100)
     )
 
-    val trader = Trader(Portfolio(holdings, 100), List())
+    val trader = Trader(traderId, Portfolio(holdings, 100), List())
     val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(200))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
@@ -63,7 +65,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
       Holding(Ticker("SGP.L"), Long, 100)
     )
 
-    val trader = Trader(Portfolio(holdings, 100), List())
+    val trader = Trader(traderId, Portfolio(holdings, 100), List())
     val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(200))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
@@ -79,7 +81,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
       Holding(Ticker("SGP.L"), Short, 100)
     )
 
-    val trader = Trader(Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
+    val trader = Trader(traderId, Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
     val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(50))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
@@ -101,7 +103,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     }
 
     it("should leave 50 shares long in his holdings for SGP.L") {
-      val numShares = t.portfolio.holdings.find(e => e.ticker.value == "SGP.L" && e.direction == Long).map(_.numberOfShares)
+      val numShares = t.portfolio.holdings.find(e => e.ticker == "SGP.L" && e.direction == Long).map(_.numberOfShares)
       numShares match {
         case Some(e) => e shouldEqual 50
         case None => fail("Trader no longer has a long position in SGP.L")
@@ -113,7 +115,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     val event = WentLong(date, Ticker("SGP.L"), Bid(poundsAsPence(16)), volume = Volume(100))
 
     describe("and doesn't have any holdings yet,") {
-      val trader = Trader(Portfolio(Vector.empty, cash = poundsAsPence(10000)), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
+      val trader = Trader(traderId, Portfolio(Vector.empty, cash = poundsAsPence(10000)), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
       val state = TradingEvents.handleEvent(event)
       val (_, t) = state.run(trader)
 
@@ -135,7 +137,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     }
 
     describe("and has a pre-existing SGP Holding of 300 shares along with a short SGP holding and another long holding,") {
-      val trader = Trader(Portfolio(Vector(
+      val trader = Trader(traderId, Portfolio(Vector(
         Holding(Ticker("SGP.L"), Long, 300),
         Holding(Ticker("SGP.L"), Short, 100),
         Holding(Ticker("CTAG.L"), Long, 100)
@@ -168,7 +170,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
   }
 
   describe("When a trader makes 4 trades in succession") {
-    val trader = Trader(Portfolio(Vector(), cash = poundsAsPence(1000)), List.empty)
+    val trader = Trader(traderId, Portfolio(Vector(), cash = poundsAsPence(1000)), List.empty)
 
     val tradingEvents = List(
       WentLong(date, Ticker("CTAG.L"), Bid(10), Volume(100)),
@@ -215,7 +217,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
       Holding(Ticker("SGP.L"), Short, 100)
     )
 
-    val trader = Trader(Portfolio(holdings, 5000), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
+    val trader = Trader(traderId, Portfolio(holdings, 5000), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
     val event = DividendPaid(date, Ticker("SGP.L"), 1051)
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)

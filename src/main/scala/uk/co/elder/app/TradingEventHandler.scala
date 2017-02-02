@@ -1,20 +1,23 @@
 package uk.co.elder.app
 
+import java.util.UUID
+
 import org.joda.time.DateTime
 import uk.co.elder.app.model.Trader._
 import uk.co.elder.app.model._
 
-import scalaz.State
+import scalaz.{@@, State}
 
 // TODO: Move these elsewhere
 case class TradingError(errorMessage: String)
 
 sealed trait Event
-case class SoldShort(date: DateTime, ticker: Ticker, atPrice: Ask, numberOfShares: BigInt) extends Event
-case class WentLong(date: DateTime, ticker: Ticker, atPrice: Bid, volume: Volume) extends Event
-case class Covered(date: DateTime,ticker: Ticker, atPrice: Bid) extends Event
-case class Sold(date: DateTime,ticker: Ticker, atPrice: Ask, volume: Volume) extends Event
-case class DividendPaid(date: DateTime, ticker: Ticker, amountPaid: BigDecimal) extends Event
+case class CreateTrader(id: TraderId, creationDate: DateTime)
+case class SoldShort(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@Ask, numberOfShares: BigInt) extends Event
+case class WentLong(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid, volume: Volume) extends Event
+case class Covered(date: DateTime,ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid) extends Event
+case class Sold(date: DateTime,ticker: String @@ Ticker, atPrice: BigDecimal @@ Ask, volume: Volume) extends Event
+case class DividendPaid(date: DateTime, ticker: String @@ Ticker, amountPaid: BigDecimal) extends Event
 
 sealed trait Direction
 case object Short extends Direction
@@ -38,7 +41,7 @@ object TradingEvents {
         case Sold(_, ticker, soldPrice, volume) =>
           val stateChange = for {
             a <- reduceLongPosition(ticker, volume)
-            _ <- amendCash(BigDecimal(volume.value) * soldPrice.value)
+            _ <- amendCash(BigDecimal(volume.value) * soldPrice)
             t <- addTradingEvent(tradingEvent)
           } yield t
 
@@ -52,7 +55,7 @@ object TradingEvents {
           val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long) :+ newHolding
 
           val stateChange = for {
-              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(volume.value) * bid.value))
+              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(volume.value) * bid))
               t <- addTradingEvent(tradingEvent)
             } yield (p, t)
 
@@ -70,9 +73,6 @@ object TradingEvents {
     }
   }
 
-  private def removeFromHoldings(holdings: Vector[Holding], ticker: Ticker, direction: Direction): Vector[Holding] =
+  private def removeFromHoldings(holdings: Vector[Holding], ticker: String @@ Ticker, direction: Direction): Vector[Holding] =
     holdings.filter(h => !(h.ticker == ticker && h.direction == direction))
 }
-
-
-

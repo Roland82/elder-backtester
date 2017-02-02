@@ -1,23 +1,30 @@
 package uk.co.elder.app.model
 
-import scalaz.ValidationNel
+import scalaz.{@@, Tag, ValidationNel}
 import scalaz.syntax.validation._
 
-case class Bid(value: BigDecimal) extends AnyVal
-case class Ask(value: BigDecimal) extends AnyVal
-case class Mid(value: BigDecimal) extends AnyVal
-case class PriceData(ask: Ask, mid: Mid, bid: Bid) {
-  def spreadAsPercentage() = ((bid.value - ask.value) / ask.value) * 100
+case class PriceData(ask: BigDecimal @@ Ask, mid: BigDecimal @@ Mid, bid: BigDecimal @@ Bid)
 
-  def spread(): BigDecimal = bid.value - ask.value
+sealed trait Ask
+object Ask {
+  def apply(v: BigDecimal): BigDecimal @@ Ask = Tag[BigDecimal, Ask](v)
+
+  def validateAsk(b: BigDecimal @@ Ask): ValidationNel[String, BigDecimal @@ Ask] = {
+    if (Tag.unwrap(b) <= 0) "The Ask price must be greater than 0".failureNel else b.successNel
+  }
+}
+sealed trait Mid
+
+object Mid {
+  def apply(v: BigDecimal): BigDecimal @@ Mid = Tag[BigDecimal, Mid](v)
 }
 
-object Bid {
-  def validateBid(b: Bid): ValidationNel[String, Bid] = {
-    if (b.value <= 0) "The Bid price must be greater than 0".failureNel else b.successNel
-  }
+sealed trait Bid
 
-  def validateAsk(b: Ask): ValidationNel[String, Ask] = {
-    if (b.value <= 0) "The Ask price must be greater than 0".failureNel else b.successNel
+object Bid {
+  def apply(v: BigDecimal): BigDecimal @@ Bid = Tag[BigDecimal, Bid](v)
+
+  def validateBid(b: BigDecimal @@ Bid): ValidationNel[String, BigDecimal @@ Bid] = {
+    if (Tag.unwrap(b) <= 0) "The Bid price must be greater than 0".failureNel else b.successNel
   }
 }
