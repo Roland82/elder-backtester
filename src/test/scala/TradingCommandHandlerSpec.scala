@@ -13,8 +13,8 @@ class TradingCommandHandlerSpec extends FunSpec with Matchers {
   private val traderId = TraderId(UUID.randomUUID())
 
   describe("TradingCommandHandler receiving a sell holding command") {
-    val shortHolding = Holding(Ticker("CTAG.L"), Short, 100)
-    val longHolding = Holding(Ticker("SGP.L"), Long, 100)
+    val shortHolding = Holding(Ticker("CTAG.L"), Short, Volume(100))
+    val longHolding = Holding(Ticker("SGP.L"), Long, Volume(100))
     val trader = Trader(traderId, Portfolio(Vector(shortHolding, longHolding), 1000), List.empty)
 
     it("should validate all parameters") {

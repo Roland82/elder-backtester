@@ -1,22 +1,22 @@
 package uk.co.elder.app
 
-import java.util.UUID
-
 import org.joda.time.DateTime
+import shapeless.tag
 import uk.co.elder.app.model.Trader._
 import uk.co.elder.app.model._
+import shapeless.tag.@@
 
-import scalaz.{@@, State}
+import scalaz.State
 
 // TODO: Move these elsewhere
 case class TradingError(errorMessage: String)
 
 sealed trait Event
-case class CreateTrader(id: TraderId, creationDate: DateTime)
-case class SoldShort(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@Ask, numberOfShares: BigInt) extends Event
-case class WentLong(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid, volume: Volume) extends Event
+case class  CreateTrader(id: TraderId, creationDate: DateTime)
+case class SoldShort(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@ Ask, numberOfShares: BigInt @@ Volume) extends Event
+case class WentLong(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid, volume: BigInt @@ Volume) extends Event
 case class Covered(date: DateTime,ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid) extends Event
-case class Sold(date: DateTime,ticker: String @@ Ticker, atPrice: BigDecimal @@ Ask, volume: Volume) extends Event
+case class Sold(date: DateTime,ticker: String @@ Ticker, atPrice: BigDecimal @@ Ask, volume: BigInt @@ Volume) extends Event
 case class DividendPaid(date: DateTime, ticker: String @@ Ticker, amountPaid: BigDecimal) extends Event
 
 sealed trait Direction
@@ -40,8 +40,7 @@ object TradingEvents {
       tradingEvent match {
         case Sold(_, ticker, soldPrice, volume) =>
           val stateChange = for {
-            a <- reduceLongPosition(ticker, volume)
-            _ <- amendCash(BigDecimal(volume.value) * soldPrice)
+            h <- reduceLongPosition(ticker, volume, soldPrice)
             t <- addTradingEvent(tradingEvent)
           } yield t
 
@@ -49,13 +48,13 @@ object TradingEvents {
 
         case WentLong(_, ticker, bid, volume) =>
           val newHolding = currentTrader.findPosition(ticker, Long)
-            .flatMap(h => Some(h.copy(numberOfShares = h.numberOfShares + volume.value)))
-            .getOrElse(Holding(ticker, Long, volume.value))
+            .flatMap(h => Some(h.copy(numberOfShares = tag[Volume](h.numberOfShares + volume.bigInteger))))
+            .getOrElse(Holding(ticker, Long, volume))
 
           val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long) :+ newHolding
 
           val stateChange = for {
-              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(volume.value) * bid))
+              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(volume) * bid))
               t <- addTradingEvent(tradingEvent)
             } yield (p, t)
 

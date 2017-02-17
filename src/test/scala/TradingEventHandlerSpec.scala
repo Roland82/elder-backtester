@@ -12,9 +12,9 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
   describe("Trader who has 100 shares both Long and Short in SGP.L and has some long CTAG.L shares and sells all his long SGP.L holdings") {
     val holdings = Vector(
-      Holding(Ticker("SGP.L"), Long, 100),
-      Holding(Ticker("SGP.L"), Short, 100),
-      Holding(Ticker("CTAG.L"), Long, 100)
+      Holding(Ticker("SGP.L"), Long,  Volume(100)),
+      Holding(Ticker("SGP.L"), Short, Volume(100)),
+      Holding(Ticker("CTAG.L"), Long, Volume(100))
     )
 
     val trader = Trader(traderId, Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
@@ -24,8 +24,8 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
     it("should leave only 100 shares Short in SGP.L, and the long CTAG.L shares") {
       t.portfolio.holdings.size shouldEqual 2
-      t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Short, 100)
-      t.portfolio.holdings(1) shouldEqual Holding(Ticker("CTAG.L"), Long, 100)
+      t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Short, Volume(100))
+      t.portfolio.holdings(1) shouldEqual Holding(Ticker("CTAG.L"), Long, Volume(100))
     }
 
     it("should add the price achieved by the sale to the traders cash holdings") {
@@ -39,7 +39,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
   describe("Trader who has 100 shares of SGP.L and recieves a Sold event for 200 shares") {
     val holdings = Vector(
-      Holding(Ticker("SGP.L"), Long, 100)
+      Holding(Ticker("SGP.L"), Long, Volume(100))
     )
 
     val trader = Trader(traderId, Portfolio(holdings, 100), List())
@@ -61,24 +61,20 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
   }
 
   describe("Trader who has no holdings at all receives event to sell ") {
-    val holdings = Vector(
-      Holding(Ticker("SGP.L"), Long, 100)
-    )
-
-    val trader = Trader(traderId, Portfolio(holdings, 100), List())
+    val trader = Trader(traderId, Portfolio(Vector(), 100), List())
     val event = Sold(date, Ticker("SGP.L"), Ask(200), Volume(200))
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
 
-    it("should not have any effect on the trader") {
-      t shouldEqual trader
+    it("should not have any effect on the trader except adding an event") {
+      t shouldEqual trader.copy(eventHistory = List(event))
     }
   }
 
   describe("Trader who has 100 shares both Long and Short in his holdings in SGP.L and sells half of his long holdings") {
     val holdings = Vector(
-      Holding(Ticker("SGP.L"), Long, 100),
-      Holding(Ticker("SGP.L"), Short, 100)
+      Holding(Ticker("SGP.L"), Long, Volume(100)),
+      Holding(Ticker("SGP.L"), Short, Volume(100))
     )
 
     val trader = Trader(traderId, Portfolio(holdings, 100), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
@@ -95,7 +91,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     }
 
     it("should leave 100 shares Short in his holdings in SGP.L") {
-      t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Short, 100)
+      t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Short, Volume(100))
     }
 
     it("should add the price achieved by the sale to the traders cash holdings") {
@@ -120,7 +116,7 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
       val (_, t) = state.run(trader)
 
       it("should have 100 shares of SGP.L in his holdings") {
-        t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Long, 100)
+        t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Long, Volume(100))
       }
 
       it("should have only one holding") {
@@ -138,9 +134,9 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
     describe("and has a pre-existing SGP Holding of 300 shares along with a short SGP holding and another long holding,") {
       val trader = Trader(traderId, Portfolio(Vector(
-        Holding(Ticker("SGP.L"), Long, 300),
-        Holding(Ticker("SGP.L"), Short, 100),
-        Holding(Ticker("CTAG.L"), Long, 100)
+        Holding(Ticker("SGP.L"), Long,  Volume(300)),
+        Holding(Ticker("SGP.L"), Short, Volume(100)),
+        Holding(Ticker("CTAG.L"), Long, Volume(100))
       ), cash = poundsAsPence(10000)), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
 
       val state = TradingEvents.handleEvent(event)
@@ -149,9 +145,9 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
       it("should have 400 shares of SGP.L, 100 sold short SGP.L shares and 100 shares of CTAG.L in his holdings") {
         t.portfolio.holdings should contain allOf
           (
-            Holding(Ticker("SGP.L"), Long, 400),
-            Holding(Ticker("SGP.L"), Short, 100),
-            Holding(Ticker("CTAG.L"), Long, 100)
+            Holding(Ticker("SGP.L"), Long,  Volume(400)),
+            Holding(Ticker("SGP.L"), Short, Volume(100)),
+            Holding(Ticker("CTAG.L"), Long, Volume(100))
           )
       }
 
@@ -186,13 +182,13 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     }
 
     it("returns a historical account of every state the trader was in") {
-      states(1).portfolio.holdings shouldEqual Vector(Holding(Ticker("CTAG.L"), Long, 100))
+      states(1).portfolio.holdings shouldEqual Vector(Holding(Ticker("CTAG.L"), Long, Volume(100)))
       states(1).portfolio.cash shouldEqual poundsAsPence(990)
 
-      states(2).portfolio.holdings should contain allOf(Holding(Ticker("CTAG.L"), Long, 100), Holding(Ticker("SGP.L"), Long, 200))
+      states(2).portfolio.holdings should contain allOf(Holding(Ticker("CTAG.L"), Long, Volume(100)), Holding(Ticker("SGP.L"), Long, Volume(200)))
       states(2).portfolio.cash shouldEqual poundsAsPence(950)
 
-      states(3).portfolio.holdings shouldEqual Vector(Holding(Ticker("CTAG.L"), Long, 100))
+      states(3).portfolio.holdings shouldEqual Vector(Holding(Ticker("CTAG.L"), Long, Volume(100)))
       states(3).portfolio.cash shouldEqual poundsAsPence(1010)
 
       states(4).portfolio.holdings shouldEqual Vector()
@@ -213,8 +209,8 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
   describe("Trader who has a dividend paid of £10.51") {
     val holdings = Vector(
-      Holding(Ticker("SGP.L"), Long, 100),
-      Holding(Ticker("SGP.L"), Short, 100)
+      Holding(Ticker("SGP.L"), Long, Volume(100)),
+      Holding(Ticker("SGP.L"), Short, Volume(100))
     )
 
     val trader = Trader(traderId, Portfolio(holdings, 5000), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))

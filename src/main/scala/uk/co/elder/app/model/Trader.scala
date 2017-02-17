@@ -2,19 +2,20 @@ package uk.co.elder.app.model
 
 import java.util.UUID
 
-import uk.co.elder.app.{Direction, Event}
+import shapeless.tag.@@
+import uk.co.elder.app.{Direction, Event, Long}
 
-import scalaz.{@@, IndexedState}
+import scalaz.std.option.optionInstance
+import scalaz.syntax.applicative._
 import scalaz.Lens.lensu
-import uk.co.elder.app.Long
-import uk.co.elder.app.BigDecimalExt
+import scalaz.{IndexedState}
 
 case class TraderId(id: UUID)
 case class Trader(t: TraderId, portfolio: Portfolio, eventHistory: List[Event]) {
   def tickerSummary(d: Direction) = this.portfolio.holdings.filter(_.direction == d).map(_.ticker)
   def findPosition(t: String @@ Ticker, d: Direction) : Option[Holding] = this.portfolio.holdings.find(e => e.ticker == t && e.direction == d)
 }
-case class Holding(ticker: String @@ Ticker, direction: Direction, numberOfShares: BigInt) {
+case class Holding(ticker: String @@ Ticker, direction: Direction, numberOfShares: BigInt @@ Volume) {
   def currentValue(pricePerShare: BigDecimal @@ Ask) = BigDecimal(numberOfShares) * pricePerShare
 }
 
@@ -35,7 +36,7 @@ object Trader {
             else
               portfolio.filter(e => (e.ticker != t ) || (e.ticker == t && e.direction != d))
           }
-          case None => portfolio
+          case None => portfolio.filter(e => (e.ticker != t ) || (e.ticker == t && e.direction != d))
         }
       },
       e => e.find(e => e.ticker == t && e.direction == d)
@@ -54,10 +55,19 @@ object Trader {
     } yield a
   }
 
-  private[app] def reduceLongPosition(t: String @@ Ticker, v: Volume): IndexedState[Trader, Trader, Option[Holding]] = {
+  private[app] def reduceLongPosition(ticker: String @@ Ticker, v: BigInt @@ Volume, atPrice : BigDecimal @@ Ask): IndexedState[Trader, Trader, _] = {
+    def calculateSharesAbleToBeSold(holding: Option[BigInt @@ Volume], sharesToBeSold: Option[BigInt @@ Volume])(implicit ev: Numeric[BigInt]) : BigInt @@ Volume = {
+      (holding |@| sharesToBeSold) { ev.min } map(e => Volume(e)) getOrElse Volume(ev.zero)
+    }
+
+    def reduceHolding(h: Option[Holding], reduceBy: BigInt @@ Volume): Option[Holding] =
+      h flatMap { e => Some(e.copy(numberOfShares = Volume(e.numberOfShares - reduceBy))) }
+
     for {
-      p <- portfolioHoldingLens(t, Long).mods(e => e.map(e => e.copy(numberOfShares = e.numberOfShares - v.value)))
-    } yield p
+        sharesAbleToBeSold <- portfolioHoldingLens(ticker, Long).map(e => calculateSharesAbleToBeSold(e.map(_.numberOfShares), Some(v)))
+        _                  <- portfolioHoldingLens(ticker, Long).mods(e => reduceHolding(e, sharesAbleToBeSold))
+        addedCash          <- portfolioCashLens.mods(cash => cash + (BigDecimal(sharesAbleToBeSold) * atPrice))
+      } yield addedCash
   }
 
   private[app] def addTradingEvent(event: Event): IndexedState[Trader, Trader, List[Event]] = {

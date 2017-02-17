@@ -1,12 +1,17 @@
 package uk.co.elder.app.model
 
-import scalaz.ValidationNel
+import shapeless.tag
+import shapeless.tag.@@
+
+import scalaz.{ValidationNel}
 import scalaz.syntax.validation._
-case class Volume(value: BigInt) extends AnyVal
+
+sealed trait Volume
 
 object Volume {
-  def validateVolume(volume: Volume): ValidationNel[String, Volume] = {
-    if (volume.value <= 0) "Volume cannot be less than or equal to 0 shares".failureNel else volume.successNel
+  def apply(t: BigInt): BigInt @@ Volume = tag.apply[Volume](t)
+  def validateVolume(volume: BigInt @@ Volume): ValidationNel[String, BigInt @@ Volume] = {
+    if (volume <= 0) "Volume cannot be less than or equal to 0 shares".failureNel else volume.successNel
   }
 }
 
