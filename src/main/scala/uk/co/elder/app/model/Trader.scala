@@ -70,6 +70,23 @@ object Trader {
       } yield addedCash
   }
 
+  private[app] def increaseLongPosition(ticker: String @@ Ticker, volume: BigInt @@ Volume, atPrice : BigDecimal @@ Bid): IndexedState[Trader, Trader, _] = {
+    def calculateSharesAbleToBeBought(availableCash : BigDecimal)(implicit ev: Numeric[BigInt]) : BigInt @@ Volume = {
+      Volume(ev.min(volume, (availableCash / atPrice).abs.toBigInt()))
+    }
+
+    def addHolding(v: BigInt @@ Volume)(h: Option[Holding]): Option[Holding] = h match {
+      case Some(holding) => Some(holding.copy(numberOfShares = Volume(holding.numberOfShares + volume)))
+      case None => Some(Holding(ticker, Long, v))
+    }
+
+    for {
+      volumeCanBuy <- portfolioCashLens.st.map(calculateSharesAbleToBeBought)
+      _            <- portfolioHoldingLens(ticker, Long).mods(addHolding(volumeCanBuy))
+      endState     <- portfolioCashLens.mods(cash => cash - (BigDecimal(volumeCanBuy) * atPrice))
+    } yield endState
+  }
+
   private[app] def addTradingEvent(event: Event): IndexedState[Trader, Trader, List[Event]] = {
     for {
       a <- tradingHistoryLens.mods(e => e :+ event)

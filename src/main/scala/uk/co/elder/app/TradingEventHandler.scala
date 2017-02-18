@@ -1,7 +1,6 @@
 package uk.co.elder.app
 
 import org.joda.time.DateTime
-import shapeless.tag
 import uk.co.elder.app.model.Trader._
 import uk.co.elder.app.model._
 import shapeless.tag.@@
@@ -47,14 +46,8 @@ object TradingEvents {
           (currentTrader, stateChange.run(currentTrader)._1)
 
         case WentLong(_, ticker, bid, volume) =>
-          val newHolding = currentTrader.findPosition(ticker, Long)
-            .flatMap(h => Some(h.copy(numberOfShares = tag[Volume](h.numberOfShares + volume.bigInteger))))
-            .getOrElse(Holding(ticker, Long, volume))
-
-          val newHoldings = removeFromHoldings(currentTrader.portfolio.holdings, ticker, Long) :+ newHolding
-
           val stateChange = for {
-              p <- amendPortfolioDetails(newHoldings, -(BigDecimal(volume) * bid))
+              p <- increaseLongPosition(ticker, volume, bid)
               t <- addTradingEvent(tradingEvent)
             } yield (p, t)
 

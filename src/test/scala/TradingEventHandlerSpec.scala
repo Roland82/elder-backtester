@@ -107,6 +107,29 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     }
   }
 
+  describe("Trader who goes long on SGP.L buying 10 shares at 10 pounds with £92 cash in his portfolio") {
+    val event = WentLong(date, Ticker("SGP.L"), Bid(poundsAsPence(10)), volume = Volume(10))
+    val trader = Trader(traderId, Portfolio(Vector.empty, cash = poundsAsPence(92)), List())
+    val state = TradingEvents.handleEvent(event)
+    val (_, t) = state.run(trader)
+
+    it("should have 9 shares of SGP.L in his holdings") {
+      t.portfolio.holdings.head shouldEqual Holding(Ticker("SGP.L"), Long, Volume(9))
+    }
+
+    it("should have only one holding") {
+      t.portfolio.holdings.size shouldEqual 1
+    }
+
+    it("should have £2 in his cash holdings after the transaction") {
+      t.portfolio.cash shouldEqual poundsAsPence(2)
+    }
+
+    it("should append to the trading event history") {
+      t.eventHistory.size shouldEqual 1
+    }
+  }
+
   describe("Trader who goes long on SGP.L buying 100 shares at 16 pounds with £10,000 cash in his portfolio") {
     val event = WentLong(date, Ticker("SGP.L"), Bid(poundsAsPence(16)), volume = Volume(100))
 
