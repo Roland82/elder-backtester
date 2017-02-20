@@ -64,7 +64,4 @@ object TradingEvents {
       }
     }
   }
-
-  private def removeFromHoldings(holdings: Vector[Holding], ticker: String @@ Ticker, direction: Direction): Vector[Holding] =
-    holdings.filter(h => !(h.ticker == ticker && h.direction == direction))
 }
