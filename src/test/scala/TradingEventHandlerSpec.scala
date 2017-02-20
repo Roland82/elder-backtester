@@ -230,19 +230,19 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
     }
   }
 
-  describe("Trader who has a dividend paid of £10.51") {
+  describe("Trader who has a dividend paid of £0.10 per share when holding 100 shares of SGP.L") {
     val holdings = Vector(
       Holding(Ticker("SGP.L"), Long, Volume(100)),
       Holding(Ticker("SGP.L"), Short, Volume(100))
     )
 
     val trader = Trader(traderId, Portfolio(holdings, 5000), List(WentLong(date, Ticker("SGP.L"), Bid(10), Volume(100))))
-    val event = DividendPaid(date, Ticker("SGP.L"), 1051)
+    val event = DividendPaid(date, Ticker("SGP.L"), 0.10)
     val state = TradingEvents.handleEvent(event)
     val (_, t) = state.run(trader)
 
     it("should have have the dividend cash added to his current cash position") {
-      t.portfolio.cash shouldEqual 6051
+      t.portfolio.cash shouldEqual 5010
     }
 
     it("should have the dividend paid event stored in his history") {
@@ -252,6 +252,22 @@ class TradingEventHandlerSpec extends FunSpec with Matchers {
 
     it("should not have their amount of holdings amended") {
       t.portfolio.holdings.size shouldEqual 2
+    }
+  }
+
+  describe("Trader receives dividend paid event for a ticker they do not currently own") {
+    val holdings = Vector(
+      Holding(Ticker("SGP.L"), Long, Volume(100)),
+      Holding(Ticker("SGP.L"), Short, Volume(100))
+    )
+
+    val trader = Trader(traderId, Portfolio(holdings, 5000), List())
+    val event = DividendPaid(date, Ticker("CTAG.L"), 0.10)
+    val state = TradingEvents.handleEvent(event)
+    val (_, t) = state.run(trader)
+
+    it("should not have any effect on the trader except adding an event") {
+      t shouldEqual trader.copy(eventHistory = List(event))
     }
   }
 }

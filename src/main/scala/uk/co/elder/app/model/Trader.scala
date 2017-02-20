@@ -8,7 +8,7 @@ import uk.co.elder.app.{Direction, Event, Long}
 import scalaz.std.option.optionInstance
 import scalaz.syntax.applicative._
 import scalaz.Lens.lensu
-import scalaz.{IndexedState}
+import scalaz.IndexedState
 
 case class TraderId(id: UUID)
 case class Trader(t: TraderId, portfolio: Portfolio, eventHistory: List[Event]) {
@@ -85,6 +85,13 @@ object Trader {
       _            <- portfolioHoldingLens(ticker, Long).mods(addHolding(volumeCanBuy))
       endState     <- portfolioCashLens.mods(cash => cash - (BigDecimal(volumeCanBuy) * atPrice))
     } yield endState
+  }
+
+  private[app] def receiveDividend(ticker: String @@ Ticker, amountPerShare: BigDecimal): IndexedState[Trader, Trader, _] = {
+    for {
+      n <- portfolioHoldingLens(ticker, Long).st.map(e => e.map(_.numberOfShares).getOrElse(Volume(0)))
+      finalState <- portfolioCashLens.mods(e => e + (BigDecimal(n) * amountPerShare))
+    } yield finalState
   }
 
   private[app] def addTradingEvent(event: Event): IndexedState[Trader, Trader, List[Event]] = {

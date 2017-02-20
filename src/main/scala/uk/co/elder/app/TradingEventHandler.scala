@@ -16,7 +16,7 @@ case class SoldShort(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecim
 case class WentLong(date: DateTime, ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid, volume: BigInt @@ Volume) extends Event
 case class Covered(date: DateTime,ticker: String @@ Ticker, atPrice: BigDecimal @@ Bid) extends Event
 case class Sold(date: DateTime,ticker: String @@ Ticker, atPrice: BigDecimal @@ Ask, volume: BigInt @@ Volume) extends Event
-case class DividendPaid(date: DateTime, ticker: String @@ Ticker, amountPaid: BigDecimal) extends Event
+case class DividendPaid(date: DateTime, ticker: String @@ Ticker, amountPerShare: BigDecimal) extends Event
 
 sealed trait Direction
 case object Short extends Direction
@@ -53,9 +53,9 @@ object TradingEvents {
 
           (currentTrader, stateChange.run(currentTrader)._1)
 
-        case DividendPaid(_, _, amountPaid) => {
+        case DividendPaid(_, ticker, amountPerShare) => {
           val stateAction = for {
-            c <- amendCash(amountPaid)
+            c <- receiveDividend(ticker, amountPerShare)
             t <- addTradingEvent(tradingEvent)
           } yield (c, t)
 
